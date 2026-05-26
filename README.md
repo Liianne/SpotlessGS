@@ -65,6 +65,12 @@ To train the model, first navigate to the Spotless folder, then:
 ```sh
 python train.py -s <path to input_data>
 ```
+If you want to train the model while having a test set for evaluation, please run:
+
+```sh
+python train.py -s <path to input_data> --eval
+```
+
 Please replace `<path to input_data>` with the path to the folder containing the COLMAP or OKVIS2 or Blender data. The trained model will be saved in the output folder.
 
 ## Evaluation
