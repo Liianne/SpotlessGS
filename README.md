@@ -18,6 +18,7 @@ git clone git clone git@github.com/Liianne/SpotlessGS --recursive
 The optimizer uses PyTorch and CUDA extensions in a Python environment to produce trained models.
 
 ## Setup
+Our code has been tested on Ubuntu 20.04 and CUDA 12.2.
 Please install the environment: 
 
 ```sh
@@ -28,6 +29,7 @@ conda activate SpotlessGS
 ## Data
 To get the input camera poses and point cloud, there are two options:
 - [COLMAP](https://colmap.github.io/)
+Please first create an input_data folder and an images subfolder, save all the input (undistorted) images in the images folder, then run [COLMAP](https://colmap.github.io/) to get camera poses and a sparse point cloud. 
 - [OKVIS2](https://github.com/ethz-mrl/okvis2)
 Please note that the raw data from OKVIS2 has to be converted into COLMAPS format. The input folder should look like:
 
@@ -44,17 +46,30 @@ Please note that the raw data from OKVIS2 has to be converted into COLMAPS forma
 |   |   |   ├── points3D.txt
 
 ```
+- [Blender](https://github.com/DLR-RM/BlenderProc)
+If you have the camera trajectory from Blender (e.g., synthetic dataset), then the input folder should look like:
+```
+├── input_data
+|   ├── images
+|   |   ├── cam_img_1.png
+|   |   ├── ...
+|   |   ├── cam_img_N.png
+|   ├── cam_traj_train.json
+|   ├── cam_traj_test.json
+|   ├── points3d.ply
+
+```
 ## Training
 To train the model, first navigate to the Spotless folder, then:
 
 ```sh
 python train.py -s <path to input_data>
 ```
-Please replace `<path to input_data>` with the path to the folder containing the COLMAP or OKVIS2 data.
+Please replace `<path to input_data>` with the path to the folder containing the COLMAP or OKVIS2 or Blender data. The trained model will be saved in the output folder.
 
 ## Evaluation
 You can render training/test sets and produce error metrics as follows:
 ```sh
 python render.py -m <path to trained model>
-python evaluate.py -m <path to rendered images>
+python metrics.py -m <path to trained model>
 ```
