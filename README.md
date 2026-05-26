@@ -74,14 +74,14 @@ python train.py -s <path to input_data> --eval
 Please replace `<path to input_data>` with the path to the folder containing the COLMAP or OKVIS2 or Blender data. The trained model will be saved in the output folder.
 
 ## Evaluation
-You can render training/test sets and produce error metrics as follows:
+To render the training/test sets and compute quantitative evaluation metrics, run:
+
 ```sh
 python render.py -m <path to trained model>
 python metrics.py -m <path to trained model>
 ```
-Please replace `<path to trained model>` with the path to the trained model directory. The rendered images will be saved in the same directory. 
-
-## Note
+Please replace `<path_to_trained_model>` with the path to the trained model directory. Rendered images and evaluation outputs will be saved in the corresponding output directory.
+## Notes
 - Input images should be undistorted before running COLMAP and training the model.
 - Raw data from OKVIS2 must be converted into COLMAP format before training.
 - When using data estimated from COLMAP, different scale factors may need to be tested due to the scale ambiguity in COLMAP.
