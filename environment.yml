@@ -1,4 +1,4 @@
-name: darkgs
+name: Spotlessgs
 channels:
   - pytorch
   - conda-forge
