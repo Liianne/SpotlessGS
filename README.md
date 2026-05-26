@@ -31,7 +31,7 @@ To get the input camera poses and point cloud, there are two options:
 - [COLMAP](https://colmap.github.io/)
 Please first create an input_data folder and an images subfolder, save all the input (undistorted) images in the images folder, then run [COLMAP](https://colmap.github.io/) to get camera poses and a sparse point cloud. 
 - [OKVIS2](https://github.com/ethz-mrl/okvis2)
-Please note that the raw data from OKVIS2 has to be converted into COLMAPS format. The input folder should look like:
+Please note that the raw data from OKVIS2 has to be converted into COLMAP format. The input folder should look like:
 
 ```
 ├── input_data
@@ -79,3 +79,9 @@ You can render training/test sets and produce error metrics as follows:
 python render.py -m <path to trained model>
 python metrics.py -m <path to trained model>
 ```
+Please replace `<path to trained model>` with the path to the trained model directory. The rendered images will be saved in the same directory. 
+
+## Note
+- Input images should be undistorted before running COLMAP and training the model.
+- Raw data from OKVIS2 must be converted into COLMAP format before training.
+- When using data estimated from COLMAP, different scale factors may need to be tested due to the scale ambiguity in COLMAP.
